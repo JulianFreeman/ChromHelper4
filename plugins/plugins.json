@@ -9,6 +9,11 @@
             "name": "测试插件2",
             "id": "demoplugin2",
             "enable": true
+        },
+        {
+            "name": "管理扩展",
+            "id": "extensions_mgr",
+            "enable": true
         }
     ]
 }

@@ -69,9 +69,9 @@ class MwChromHelper(QtWidgets.QMainWindow):
         self.ui = UiMwChromHelper(self)
         
         self.local_state_map: dict[str, dict] = {}
-
         self.enabled_tabs: dict[str, AbstractPluginWidget] = {}
         self.plugins: dict[str, PluginInfo] = self.read_plugins()
+        # 这里的顺序是先创建控件，再调用更新函数更新数据，所以下面这个函数要在触发槽函数之前
         self.update_plugins()
 
         self.ui.act_data_path.triggered.connect(self.on_act_data_path_triggered)
@@ -81,7 +81,6 @@ class MwChromHelper(QtWidgets.QMainWindow):
         self.ui.act_update_browser_data.triggered.connect(self.on_act_update_browser_data_triggered)
 
         self.ui.acg_browsers.triggered.connect(self.on_acg_browsers_triggered)
-
         # 为了触发槽函数
         self.ui.act_browser_chrome.trigger()
 
@@ -178,11 +177,13 @@ class MwChromHelper(QtWidgets.QMainWindow):
             tb_wg = self.enabled_tabs[pid]
             tb_wg.update_browser(browser, self.local_state_map[browser])
 
-    def on_act_update_browser_data_triggered(self):
+    def get_current_browser(self) -> str:
         action = self.ui.acg_browsers.checkedAction()
-        browser = action.text()
+        return action.text()
+
+    def on_act_update_browser_data_triggered(self):
+        browser = self.get_current_browser()
         local_state_data = self.get_local_state_data(browser)
         if len(local_state_data) == 0:
             return
         self.local_state_map[browser] = local_state_data
-

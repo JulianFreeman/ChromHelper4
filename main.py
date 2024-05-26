@@ -62,6 +62,7 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setOrganizationName(ORG_NAME)
     app.setApplicationName(APP_NAME)
+    app.setStyle("Fusion")
 
     set_default_settings()
 
