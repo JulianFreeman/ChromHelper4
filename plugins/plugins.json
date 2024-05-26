@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        {
+            "name": "测试插件1",
+            "id": "demoplugin1",
+            "enable": true
+        },
+        {
+            "name": "测试插件2",
+            "id": "demoplugin2",
+            "enable": true
+        }
+    ]
+}

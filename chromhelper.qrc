@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/">
+    <file>images/brave_32.png</file>
+    <file>images/chrome_32.png</file>
+    <file>images/edge_32.png</file>
+    <file>images/chromhelper_64.png</file>
+  </qresource>
+</RCC>
